@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
 const PUBLIC_PATHS = ["/", "/login", "/signup", "/auth/callback"];
+const CHANGE_PASSWORD_PATH = "/admin/change-password";
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
@@ -36,6 +37,19 @@ export async function middleware(request: NextRequest) {
 
   if (user && (pathname === "/login" || pathname === "/signup")) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  // Enforce forced password change for admin users
+  if (user && pathname !== CHANGE_PASSWORD_PATH) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("must_change_password")
+      .eq("id", user.id)
+      .single();
+
+    if (profile?.must_change_password) {
+      return NextResponse.redirect(new URL(CHANGE_PASSWORD_PATH, request.url));
+    }
   }
 
   return response;

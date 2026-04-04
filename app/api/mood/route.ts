@@ -1,3 +1,22 @@
+/**
+ * POST /api/mood
+ *
+ * Records a daily mood check-in for the authenticated user.
+ *
+ * Auth: Required (Supabase session cookie). Returns 401 if unauthenticated.
+ *
+ * Request body:
+ *   { score: number (1-10), note?: string }
+ *
+ * Response:
+ *   200 { success: true }
+ *   400 { error: "Invalid score" }  — score out of range or missing
+ *   401 { error: "Unauthorized" }
+ *   500 { error: string }           — Supabase insert failed
+ *
+ * Multiple check-ins per day are allowed. The Insights dashboard
+ * reads from this table to compute averages, streaks, and trend charts.
+ */
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 

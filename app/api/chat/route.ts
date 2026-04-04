@@ -1,3 +1,25 @@
+/**
+ * POST /api/chat
+ *
+ * AI chat companion endpoint. Accepts a conversation history and streams
+ * GPT-4o-mini responses using Server-Sent Events (SSE).
+ *
+ * Auth: Required (Supabase session cookie). Returns 401 if unauthenticated.
+ *
+ * Request body:
+ *   { messages: { role: "user"|"assistant", content: string }[], sessionId?: string }
+ *
+ * Response (streaming):
+ *   Content-Type: text/event-stream
+ *   Each chunk: `data: {"text": "..."}\n\n`
+ *   Final chunk: `data: [DONE]\n\n`
+ *   Header X-Session-Id: <uuid> — use this to continue the session on next request
+ *
+ * Graceful degradation: if OPENAI_API_KEY is absent or placeholder, returns a
+ * static fallback JSON response instead of a stream (no 500 error).
+ *
+ * Crisis detection is handled client-side in ChatInterface.tsx using lib/crisis.ts.
+ */
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import OpenAI from "openai";
@@ -18,6 +40,7 @@ export async function POST(req: NextRequest) {
   const userMsg = messages[messages.length - 1];
   let sid = sessionId;
   if (!sid) {
+    // Create a new chat session row so messages can be persisted and replayed
     const { data: session } = await supabase.from("chat_sessions").insert({ user_id: user.id }).select().single();
     sid = session?.id;
   }
@@ -45,6 +68,7 @@ export async function POST(req: NextRequest) {
         full += text;
         if (text) controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`));
       }
+      // Persist the complete assistant reply after streaming finishes
       if (sid) await supabase.from("messages").insert({ session_id: sid, role: "assistant", content: full });
       controller.enqueue(encoder.encode(`data: [DONE]\n\n`));
       controller.close();

@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import type { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 export async function POST(request: Request) {
   const cookieStore = cookies();
@@ -15,12 +16,10 @@ export async function POST(request: Request) {
           return cookieStore.get(name)?.value;
         },
         set(name: string, value: string, options: Record<string, unknown>) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          response.cookies.set(name, value, options as any);
+          response.cookies.set(name, value, options as Partial<ResponseCookie>);
         },
         remove(name: string, options: Record<string, unknown>) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          response.cookies.set(name, '', options as any);
+          response.cookies.set(name, '', options as Partial<ResponseCookie>);
         },
       },
     }

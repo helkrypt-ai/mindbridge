@@ -65,6 +65,12 @@ export default async function AdminPage() {
   const profileMap = new Map((profiles ?? []).map((p) => [p.id, p]));
   const subMap = new Map((subscriptions ?? []).map((s) => [s.user_id, s]));
 
+  // Separate customers (non-admins) from admin accounts for stats
+  const customerIds = new Set(
+    authUsers.filter((u) => !profileMap.get(u.id)?.is_admin).map((u) => u.id)
+  );
+  const customerUsers = authUsers.filter((u) => customerIds.has(u.id));
+
   // Aggregate mood data per user
   const moodByUser = new Map<string, { scores: number[]; dates: string[] }>();
   for (const e of moodEntries ?? []) {
@@ -92,7 +98,7 @@ export default async function AdminPage() {
       lastChatByUser.set(e.user_id, e.created_at);
   }
 
-  // DAU / MAU computation
+  // DAU / MAU computation (customers only)
   const now = Date.now();
   const oneDayAgo = new Date(now - 86400000).toISOString();
   const thirtyDaysAgo = new Date(now - 30 * 86400000).toISOString();
@@ -105,11 +111,12 @@ export default async function AdminPage() {
     ...(chatSessions ?? []),
   ];
   for (const e of allActivity) {
+    if (!customerIds.has(e.user_id)) continue;
     if (e.created_at >= oneDayAgo) dauSet.add(e.user_id);
     if (e.created_at >= thirtyDaysAgo) mauSet.add(e.user_id);
   }
 
-  // Build user rows
+  // Build user rows (all users passed; AdminDashboard filters out admins in the UI)
   const users: AdminUser[] = authUsers.map((u) => {
     const profile = profileMap.get(u.id);
     const sub = subMap.get(u.id);
@@ -155,9 +162,9 @@ export default async function AdminPage() {
       avg: parseFloat((total / count).toFixed(1)),
     }));
 
-  // Subscription counts
+  // Subscription counts (customers only)
   const subCounts: Record<string, number> = {};
-  for (const u of authUsers) {
+  for (const u of customerUsers) {
     const sub = subMap.get(u.id);
     const key = sub?.status ?? "free";
     subCounts[key] = (subCounts[key] ?? 0) + 1;
@@ -175,7 +182,7 @@ export default async function AdminPage() {
 
   return (
     <AdminDashboard
-      stats={{ totalUsers: authUsers.length, dau: dauSet.size, mau: mauSet.size, premiumCount, mrr }}
+      stats={{ totalUsers: customerUsers.length, dau: dauSet.size, mau: mauSet.size, premiumCount, mrr }}
       users={users}
       moodTrendData={moodTrendData}
       subCounts={subCounts}

@@ -3,6 +3,7 @@ import "./globals.css";
 import FeedbackButton from "@/components/FeedbackButton";
 import InstallButton from "@/components/InstallButton";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "MindBridge — Mental Wellness AI",
@@ -20,13 +21,16 @@ export const metadata: Metadata = {
   themeColor: "#6366F1",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const headersList = await headers();
+  const locale = headersList.get("x-locale") ?? "nb";
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

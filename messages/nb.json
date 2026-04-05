@@ -1,0 +1,125 @@
+{
+  "common": {
+    "save": "Lagre",
+    "cancel": "Avbryt",
+    "back": "Tilbake",
+    "next": "Neste",
+    "loading": "Laster…",
+    "saving": "Lagrer…",
+    "signOut": "Logg ut",
+    "continueWithGoogle": "Fortsett med Google",
+    "email": "E-post",
+    "password": "Passord"
+  },
+  "home": {
+    "tagline": "Din AI-kompanjong for mental helse. Evidensbasert støtte, personlig veiledning og alltid tilgjengelig emosjonell tilstedeværelse.",
+    "getStarted": "Kom i gang",
+    "signIn": "Logg inn",
+    "privacyPolicy": "Personvernerklæring"
+  },
+  "nav": {
+    "dashboard": "Oversikt",
+    "checkin": "Humørsjekk",
+    "chat": "Chat",
+    "journal": "Journal"
+  },
+  "dashboard": {
+    "title": "Din oversikt",
+    "avgMood": "Gj.snitt humør",
+    "dayStreak": "Dagers streak",
+    "checkins": "Humørsjekker",
+    "moodOverTime": "Humør over tid",
+    "noDataPrompt": "Logg humørsjekker for å se trendgrafen din.",
+    "firstCheckin": "Logg din første humørsjekk →",
+    "moodCheckin": "Humørsjekk",
+    "aiCompanion": "AI-kompanjong",
+    "journal": "Journal"
+  },
+  "checkin": {
+    "title": "Hvordan har du det?",
+    "rangeMin": "1 — Veldig lavt",
+    "rangeMax": "10 — Utmerket",
+    "noteLabel": "Notat (valgfritt)",
+    "notePlaceholder": "Hva tenker du på?",
+    "submit": "Lagre humørsjekk",
+    "saving": "Lagrer…",
+    "savedTitle": "Humørsjekk lagret!",
+    "savedMood": "Humør: {score}/10 — {label}",
+    "logAnother": "Logg en til",
+    "moodLabels": {
+      "1": "Veldig lavt",
+      "2": "Lavt",
+      "3": "Under gjennomsnitt",
+      "4": "Litt lavt",
+      "5": "Nøytralt",
+      "6": "Litt bra",
+      "7": "Bra",
+      "8": "Veldig bra",
+      "9": "Flott",
+      "10": "Utmerket"
+    }
+  },
+  "journal": {
+    "title": "Journal",
+    "placeholder": "Skriv fritt om hvordan du har det…",
+    "reflecting": "Reflekterer…",
+    "submit": "Lagre og få refleksjon",
+    "reflectionPromptLabel": "Refleksjonsspørsmål"
+  },
+  "chat": {
+    "greeting": "Hei, jeg er MindBridge. Hvordan har du det i dag?",
+    "inputPlaceholder": "Del hva som er på hjertet ditt…",
+    "send": "Send",
+    "sending": "…",
+    "errorMessage": "Beklager, noe gikk galt. Prøv igjen."
+  },
+  "onboarding": {
+    "steps": {
+      "name": "Navn",
+      "goals": "Mål",
+      "concern": "Hovedutfordring"
+    },
+    "nameQuestion": "Hva heter du?",
+    "goalsQuestion": "Hva er dine velværemål?",
+    "concernQuestion": "Hva er din største utfordring?",
+    "namePlaceholder": "Ditt navn",
+    "goalsPlaceholder": "f.eks. Redusere angst, forbedre søvn, bygge motstandskraft…",
+    "concerns": {
+      "anxiety": "Angst",
+      "depression": "Depresjon",
+      "stress": "Stress",
+      "relationship": "Relasjonsproblemer",
+      "sleep": "Søvnproblemer",
+      "other": "Annet"
+    },
+    "getStarted": "Kom i gang"
+  },
+  "auth": {
+    "signInTitle": "Logg inn på MindBridge",
+    "signUpTitle": "Opprett din konto",
+    "passwordPlaceholder": "Passord (min. 6 tegn)",
+    "signingIn": "Logger inn…",
+    "creatingAccount": "Oppretter konto…",
+    "signIn": "Logg inn",
+    "signUp": "Registrer deg",
+    "noAccount": "Har du ikke konto? <link>Registrer deg</link>",
+    "alreadyAccount": "Har du allerede konto? <link>Logg inn</link>"
+  },
+  "crisis": {
+    "title": "Du er ikke alene",
+    "subtitle": "Hvis du er i krise, ta kontakt for umiddelbar støtte.",
+    "line1": {
+      "name": "Mental Helse-hjelpetelefonen",
+      "detail": "Ring 116 123 — Gratis, 24/7"
+    },
+    "line2": {
+      "name": "Kirkens SOS",
+      "detail": "Ring 22 40 00 40 — Chat og telefon"
+    },
+    "emergency": {
+      "name": "Nødtjenester",
+      "detail": "Ring 113 for øyeblikkelig hjelp"
+    },
+    "close": "Jeg er trygg, lukk dette"
+  }
+}

@@ -7,6 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description:
       "Your AI mental wellness companion. Evidence-based support, personalized daily guidance, and always-on emotional presence.",
     start_url: "/",
+    lang: "nb",
     display: "standalone",
     orientation: "portrait",
     theme_color: "#6366F1",

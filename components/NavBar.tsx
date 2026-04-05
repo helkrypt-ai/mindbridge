@@ -1,25 +1,31 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const NAV = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/checkin", label: "Check-in" },
-  { href: "/chat", label: "Chat" },
-  { href: "/journal", label: "Journal" },
-];
+import { useTranslations } from "next-intl";
 
 export default function NavBar() {
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const pathname = usePathname();
+
+  const NAV = [
+    { href: "/dashboard", label: t("dashboard") },
+    { href: "/checkin", label: t("checkin") },
+    { href: "/chat", label: t("chat") },
+    { href: "/journal", label: t("journal") },
+  ];
+
+  // Strip locale prefix for active path matching (e.g. /en/dashboard → /dashboard)
+  const strippedPath = pathname.replace(/^\/(nb|en)/, "") || "/";
 
   return (
     <nav className="border-b bg-white px-4 sm:px-6 py-3 flex items-center gap-6">
       <Link href="/dashboard" className="font-bold text-indigo-700 text-lg mr-4">MindBridge</Link>
       {NAV.map(({ href, label }) => (
-        <Link key={href} href={href} className={`text-sm font-medium ${pathname === href ? "text-indigo-600" : "text-gray-600 hover:text-gray-900"}`}>{label}</Link>
+        <Link key={href} href={href} className={`text-sm font-medium ${strippedPath === href ? "text-indigo-600" : "text-gray-600 hover:text-gray-900"}`}>{label}</Link>
       ))}
       <form action="/api/auth/signout" method="post" className="ml-auto">
-        <button type="submit" className="text-sm text-gray-500 hover:text-gray-900">Sign out</button>
+        <button type="submit" className="text-sm text-gray-500 hover:text-gray-900">{tCommon("signOut")}</button>
       </form>
     </nav>
   );

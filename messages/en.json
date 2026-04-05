@@ -1,0 +1,125 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "loading": "Loading…",
+    "saving": "Saving…",
+    "signOut": "Sign out",
+    "continueWithGoogle": "Continue with Google",
+    "email": "Email",
+    "password": "Password"
+  },
+  "home": {
+    "tagline": "Your AI mental wellness companion. Evidence-based support, personalized guidance, and always-on emotional presence.",
+    "getStarted": "Get started",
+    "signIn": "Sign in",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "checkin": "Check-in",
+    "chat": "Chat",
+    "journal": "Journal"
+  },
+  "dashboard": {
+    "title": "Your dashboard",
+    "avgMood": "Avg mood",
+    "dayStreak": "Day streak",
+    "checkins": "Check-ins",
+    "moodOverTime": "Mood over time",
+    "noDataPrompt": "Log mood check-ins to see your trend chart.",
+    "firstCheckin": "Log your first check-in →",
+    "moodCheckin": "Mood check-in",
+    "aiCompanion": "AI companion",
+    "journal": "Journal"
+  },
+  "checkin": {
+    "title": "How are you feeling?",
+    "rangeMin": "1 — Very low",
+    "rangeMax": "10 — Excellent",
+    "noteLabel": "Note (optional)",
+    "notePlaceholder": "What's on your mind?",
+    "submit": "Save check-in",
+    "saving": "Saving…",
+    "savedTitle": "Check-in saved!",
+    "savedMood": "Mood: {score}/10 — {label}",
+    "logAnother": "Log another",
+    "moodLabels": {
+      "1": "Very low",
+      "2": "Low",
+      "3": "Below average",
+      "4": "Slightly low",
+      "5": "Neutral",
+      "6": "Slightly good",
+      "7": "Good",
+      "8": "Very good",
+      "9": "Great",
+      "10": "Excellent"
+    }
+  },
+  "journal": {
+    "title": "Journal",
+    "placeholder": "Write freely about how you're feeling…",
+    "reflecting": "Reflecting…",
+    "submit": "Save & get reflection",
+    "reflectionPromptLabel": "Reflection prompt"
+  },
+  "chat": {
+    "greeting": "Hi, I'm MindBridge. How are you feeling today?",
+    "inputPlaceholder": "Share what's on your mind…",
+    "send": "Send",
+    "sending": "…",
+    "errorMessage": "Sorry, something went wrong. Please try again."
+  },
+  "onboarding": {
+    "steps": {
+      "name": "Name",
+      "goals": "Goals",
+      "concern": "Primary concern"
+    },
+    "nameQuestion": "What's your name?",
+    "goalsQuestion": "What are your wellness goals?",
+    "concernQuestion": "What's your primary concern?",
+    "namePlaceholder": "Your name",
+    "goalsPlaceholder": "e.g. Reduce anxiety, improve sleep, build resilience…",
+    "concerns": {
+      "anxiety": "Anxiety",
+      "depression": "Depression",
+      "stress": "Stress",
+      "relationship": "Relationship issues",
+      "sleep": "Sleep problems",
+      "other": "Other"
+    },
+    "getStarted": "Get started"
+  },
+  "auth": {
+    "signInTitle": "Sign in to MindBridge",
+    "signUpTitle": "Create your account",
+    "passwordPlaceholder": "Password (min 6 chars)",
+    "signingIn": "Signing in…",
+    "creatingAccount": "Creating account…",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "noAccount": "No account? <link>Sign up</link>",
+    "alreadyAccount": "Already have an account? <link>Sign in</link>"
+  },
+  "crisis": {
+    "title": "You're not alone",
+    "subtitle": "If you're in crisis, please reach out for immediate support.",
+    "line1": {
+      "name": "988 Suicide & Crisis Lifeline",
+      "detail": "Call or text 988 — 24/7, free, confidential"
+    },
+    "line2": {
+      "name": "Crisis Text Line",
+      "detail": "Text HOME to 741741 — 24/7 text support"
+    },
+    "emergency": {
+      "name": "Emergency Services",
+      "detail": "Call 911 for immediate emergency help"
+    },
+    "close": "I'm safe, close this"
+  }
+}

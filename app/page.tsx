@@ -186,8 +186,8 @@ const Wrap = ({ children, style }: { children: React.ReactNode; style?: React.CS
   </div>
 );
 
-const Section = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => (
-  <section style={{ padding: "100px 0", position: "relative", ...style }}>
+const Section = ({ children, style, id }: { children: React.ReactNode; style?: React.CSSProperties; id?: string }) => (
+  <section id={id} style={{ padding: "100px 0", position: "relative", ...style }}>
     {children}
   </section>
 );

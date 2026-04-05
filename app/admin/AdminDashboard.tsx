@@ -126,6 +126,8 @@ export default function AdminDashboard({
     },
   ].filter((d) => d.value > 0);
 
+  const customerCount = useMemo(() => users.filter((u) => !u.isAdmin).length, [users]);
+
   const filteredUsers = useMemo(() => {
     const nonAdmins = users.filter((u) => !u.isAdmin);
     if (!userSearch.trim()) return nonAdmins;
@@ -299,7 +301,7 @@ export default function AdminDashboard({
                 className="w-80 border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
               />
               <span className="text-sm text-gray-400">
-                {filteredUsers.length} of {users.length} users
+                {filteredUsers.length} of {customerCount} users
               </span>
             </div>
 

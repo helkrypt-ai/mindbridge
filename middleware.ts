@@ -35,21 +35,31 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (user && (pathname === "/login" || pathname === "/signup")) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  }
-
-  // Enforce forced password change for admin users
   if (user && pathname !== CHANGE_PASSWORD_PATH) {
     const { data: profile } = await supabase
       .from("profiles")
-      .select("must_change_password")
+      .select("is_admin, must_change_password")
       .eq("id", user.id)
       .single();
 
     if (profile?.must_change_password) {
       return NextResponse.redirect(new URL(CHANGE_PASSWORD_PATH, request.url));
     }
+
+    // Redirect from login/signup
+    if (pathname === "/login" || pathname === "/signup") {
+      const dest = profile?.is_admin ? "/admin" : "/dashboard";
+      return NextResponse.redirect(new URL(dest, request.url));
+    }
+
+    // Keep admins out of the product — redirect to admin dashboard
+    if (profile?.is_admin && !pathname.startsWith("/admin")) {
+      return NextResponse.redirect(new URL("/admin", request.url));
+    }
+  }
+
+  if (user && (pathname === "/login" || pathname === "/signup")) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   return response;

@@ -127,9 +127,10 @@ export default function AdminDashboard({
   ].filter((d) => d.value > 0);
 
   const filteredUsers = useMemo(() => {
-    if (!userSearch.trim()) return users;
+    const nonAdmins = users.filter((u) => !u.isAdmin);
+    if (!userSearch.trim()) return nonAdmins;
     const q = userSearch.toLowerCase();
-    return users.filter(
+    return nonAdmins.filter(
       (u) =>
         u.email.toLowerCase().includes(q) ||
         (u.name ?? "").toLowerCase().includes(q)

@@ -12,10 +12,12 @@ export function createClient() {
           return cookieStore.get(name)?.value;
         },
         set(name: string, value: string, options: Record<string, unknown>) {
-          cookieStore.set({ name, value, ...options });
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          cookieStore.set(name, value, options as any);
         },
         remove(name: string, options: Record<string, unknown>) {
-          cookieStore.set({ name, value: "", ...options });
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          cookieStore.set(name, "", options as any);
         },
       },
     }

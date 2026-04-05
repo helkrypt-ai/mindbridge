@@ -1,6 +1,5 @@
 "use client";
 import { useState, useMemo } from "react";
-import Link from "next/link";
 import {
   LineChart,
   Line,
@@ -176,12 +175,14 @@ export default function AdminDashboard({
             MindBridge analytics &amp; user management
           </p>
         </div>
-        <Link
-          href="/dashboard"
-          className="text-sm text-indigo-600 hover:underline"
-        >
-          ← Back to app
-        </Link>
+        <form action="/api/auth/signout" method="post">
+          <button
+            type="submit"
+            className="text-sm text-indigo-600 hover:underline"
+          >
+            Log out
+          </button>
+        </form>
       </div>
 
       {/* Tabs */}
